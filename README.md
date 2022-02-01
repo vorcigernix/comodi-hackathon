@@ -45,7 +45,8 @@ npm install
 yarn
 ```
 
-2. Start the local Hardhat node
+2. Start the local Hardhat node. In case of newer Nodejs use "export NODE_OPTIONS=--openssl-legacy-provider"
+
 
 ```sh
 npx hardhat node
