@@ -12,7 +12,7 @@ contract CNft is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("QRCode", "QRC") {}
+    constructor(address marketplaceAddress) ERC721("QRCode", "QRC") {}
 
     function safeMint(string memory uri) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
