@@ -6,7 +6,7 @@ function Marketplace({ Component, pageProps }) {
     <div>
       <nav className="border-b p-6">
         <Link href="/" passHref>
-        <a className="text-4xl text-sky-700 font-bold">Comodi</a>
+        <a className="text-4xl text-sky-700 font-extrabold font-title">Comodi</a>
         </Link>
         <div className="flex mt-4">
           <Link href="/market">

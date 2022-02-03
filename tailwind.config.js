@@ -4,7 +4,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      body: ['"Source Sans Pro"', "sans-serif"],
+      title: ["Raleway", "sans-serif"],
+    },
   },
   plugins: [],
 }
