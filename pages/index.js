@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+
 export default function Home() {
   const [provider, setProvider] = useState(null);
   useEffect(() => {
@@ -20,10 +22,11 @@ export default function Home() {
             </h1>
             {provider ? (
               <p className="mb-8 leading-relaxed">
-                Coolio bro, you have the wallet. Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+                Coolio bro, you have the wallet. Copper mug try-hard pitchfork
+                pour-over freegan heirloom neutra air plant cold-pressed tacos
+                poke beard tote bag. Heirloom echo park mlkshk tote bag selvage
+                hot chicken authentic tumeric truffaut hexagon try-hard
+                chambray.
               </p>
             ) : (
               <p className="mb-8 leading-relaxed">
@@ -51,13 +54,20 @@ export default function Home() {
                   Wallet Installed
                 </span>
               ) : (
-                <button className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg">
+                <a
+                  href="https://metamask.io/download/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg"
+                >
                   Install Metamask
-                </button>
+                </a>
               )}
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                Open Marketplace
-              </button>
+              <Link href="/market" passHref>
+                <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                  Open Marketplace
+                </button>
+              </Link>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
