@@ -9,8 +9,8 @@ function Marketplace({ Component, pageProps }) {
     if (window.ethereum) {
       setProvider(new ethers.providers.Web3Provider(window.ethereum));
     }
-    console.log(provider);
-  }, [provider]);
+    //console.log(provider);
+  }, []);
   return (
     <div>
       <nav className="border-b p-6">

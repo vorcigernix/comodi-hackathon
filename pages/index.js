@@ -8,32 +8,33 @@ export default function Home() {
     if (window.ethereum) {
       setProvider(new ethers.providers.Web3Provider(window.ethereum));
     }
-    console.log(provider);
-  }, [provider]);
+    //console.log(provider);
+  }, []);
   return (
     <>
       <section className="text-gray-600 body-font" name="hero">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-              Commodity Market
+              Decentralized solutions
               <br className="hidden lg:inline-block" />
-              for this century
+              that earn you more for your business
             </h1>
             {provider ? (
               <p className="mb-8 leading-relaxed">
-                Coolio bro, you have the wallet. Copper mug try-hard pitchfork
-                pour-over freegan heirloom neutra air plant cold-pressed tacos
-                poke beard tote bag. Heirloom echo park mlkshk tote bag selvage
-                hot chicken authentic tumeric truffaut hexagon try-hard
-                chambray.
+                Comodi is a decentralized application (Dapp) that opens new
+                earning potential for your business through decentralized
+                finance (Defi), the use of smart contracts and NFTs. Earn more
+                for your products and gain access to new revenues, lending, and
+                capital resources to grow your business.
               </p>
             ) : (
               <p className="mb-8 leading-relaxed">
-                Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-                air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-                park mlkshk tote bag selvage hot chicken authentic tumeric
-                truffaut hexagon try-hard chambray.
+                Comodi is a decentralized application (Dapp) that opens new
+                earning potential for your business through decentralized
+                finance (Defi), the use of smart contracts and NFTs. Earn more
+                for your products and gain access to new revenues, lending, and
+                capital resources to grow your business.
               </p>
             )}
             <div className="flex justify-center">
@@ -88,6 +89,16 @@ export default function Home() {
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
               Simple, Reliable, and Secure
             </h1>
+            <p className="mb-8 leading-relaxed p-12">
+              First, Comodi will earn you more on your products. Next, you can
+              lend those earnings on our platform for an additional compound APR
+              ranging from 5-15%, earning you even more. We offer short and
+              long-term staking with benefits for the longer you stake. You can
+              borrow against your earnings and get access to capital to run your
+              business smoothly. It’s safe and easy to use. Finally, in addition
+              to Defi, Comodi can help to streamline your business, cut costs,
+              and grow brand awareness.
+            </p>
           </div>
           <div className="flex flex-wrap -m-4">
             <div className="p-4 md:w-1/3">
@@ -95,19 +106,22 @@ export default function Home() {
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-sky-500 text-white flex-shrink-0">
                     <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
                       fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
                       viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Get Money fast
+                    Producer
                   </h2>
                 </div>
                 <div className="flex-grow">
@@ -150,7 +164,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Control of transaction
+                    Wholesaler
                   </h2>
                 </div>
                 <div className="flex-grow">
@@ -180,21 +194,22 @@ export default function Home() {
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-sky-500 text-white flex-shrink-0">
                     <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
                       fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-5 h-5"
                       viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <circle cx="6" cy="6" r="3"></circle>
-                      <circle cx="6" cy="18" r="3"></circle>
-                      <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                      />
                     </svg>
                   </div>
                   <h2 className="text-gray-900 text-lg title-font font-medium">
-                    Cut bank fees
+                    Retailer
                   </h2>
                 </div>
                 <div className="flex-grow">
