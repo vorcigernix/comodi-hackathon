@@ -25,13 +25,13 @@ function Marketplace({ Component, pageProps }) {
               <a className="mr-4 text-sky-500">Market</a>
             </Link>
             <Link href="/create-item">
-              <a className="mr-6 text-sky-500">Sell Digital Asset</a>
+              <a className="mr-6 text-sky-500">Create Order</a>
             </Link>
             <Link href="/my-assets">
-              <a className="mr-6 text-sky-500">My Digital Assets</a>
+              <a className="mr-6 text-sky-500">View Orders</a>
             </Link>
             <Link href="/creator-dashboard">
-              <a className="mr-6 text-sky-500">Creator Dashboard</a>
+              <a className="mr-6 text-sky-500">Wallet</a>
             </Link>
           </div>
         )}
