@@ -4,6 +4,7 @@
 .infuraid
 #config.js
 hardhat.config.js
+.env
 
 # dependencies
 /node_modules

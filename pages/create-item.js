@@ -10,7 +10,13 @@ const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 import { nftaddress, nftmarketaddress } from "../config";
 
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
-import Market from "../artifacts/contracts/Market.sol/NFTMarket.json";
+import Market from "../artifacts/contracts/Market.sol/Market.json";
+
+let rpcEndpoint = null;
+
+if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
+  rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL;
+}
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
@@ -21,7 +27,70 @@ export default function CreateItem() {
     sku: "",
     qty: "",
   });
+  const [ethPrice, setEthPrice] = useState(0);
   const router = useRouter();
+  function getEthPrice() {
+    const priceProvider = new ethers.providers.JsonRpcProvider(rpcEndpoint);
+    const aggregatorV3InterfaceABI = [
+      {
+        inputs: [],
+        name: "decimals",
+        outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "description",
+        outputs: [{ internalType: "string", name: "", type: "string" }],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [{ internalType: "uint80", name: "_roundId", type: "uint80" }],
+        name: "getRoundData",
+        outputs: [
+          { internalType: "uint80", name: "roundId", type: "uint80" },
+          { internalType: "int256", name: "answer", type: "int256" },
+          { internalType: "uint256", name: "startedAt", type: "uint256" },
+          { internalType: "uint256", name: "updatedAt", type: "uint256" },
+          { internalType: "uint80", name: "answeredInRound", type: "uint80" },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "latestRoundData",
+        outputs: [
+          { internalType: "uint80", name: "roundId", type: "uint80" },
+          { internalType: "int256", name: "answer", type: "int256" },
+          { internalType: "uint256", name: "startedAt", type: "uint256" },
+          { internalType: "uint256", name: "updatedAt", type: "uint256" },
+          { internalType: "uint80", name: "answeredInRound", type: "uint80" },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "version",
+        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      },
+    ];
+    const addr = "0xF9680D99D6C9589e2a93a78A04A279e509205945";
+    const priceFeed = new ethers.Contract(
+      addr,
+      aggregatorV3InterfaceABI,
+      priceProvider
+    );
+    priceFeed.latestRoundData().then((roundData) => {
+      console.log(roundData);
+      setEthPrice(roundData);
+    });
+  }
   useEffect(() => {
     async function generateQR() {
       const file = await QRCode.toString("ahoooy");
@@ -36,6 +105,7 @@ export default function CreateItem() {
       }
     }
     generateQR();
+    //getEthPrice();
   }, []);
 
   async function createMarket() {
