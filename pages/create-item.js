@@ -182,15 +182,32 @@ export default function CreateItem() {
         </div>
       </section>
 
-      <div className="flex justify-center">
-        <div className="w-1/2 flex flex-col pb-12">
-          <button
-            onClick={createMarket}
-            className="font-bold mt-4 bg-sky-500 text-white rounded p-4 shadow-lg"
+      <div className="flex justify-center pb-10">
+        <button
+          className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-l text-lg"
+          onClick={() => window.print()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Create Order
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+            />
+          </svg>
+        </button>
+        <button
+          onClick={createMarket}
+          className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-r text-lg"
+        >
+          Create Order
+        </button>
       </div>
     </>
   );
