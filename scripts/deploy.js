@@ -7,7 +7,7 @@ async function main() {
   await nftMarket.deployed();
   console.log("nftMarket deployed to:", nftMarket.address);
 
-  const NFT = await hre.ethers.getContractFactory("Nft");
+  const NFT = await hre.ethers.getContractFactory("NFT");
   const nft = await NFT.deploy(nftMarket.address);
   await nft.deployed();
   console.log("nft deployed to:", nft.address);
