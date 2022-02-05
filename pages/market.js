@@ -2,7 +2,6 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3Modal from "web3modal";
-import Image from "next/image";
 
 import { nftaddress, nftmarketaddress } from "../config";
 
@@ -15,7 +14,7 @@ if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
   rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL;
 }
 
-export default function Home() {
+export default function Marketplace() {
   const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState("not-loaded");
   useEffect(() => {
