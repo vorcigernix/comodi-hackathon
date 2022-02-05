@@ -44,6 +44,8 @@ export default function CreateItem() {
       name,
       description,
       image: fileUrl,
+      sku,
+      qty,
     });
     try {
       const added = await client.add(data);
