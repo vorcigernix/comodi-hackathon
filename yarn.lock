@@ -143,6 +143,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@chainlink/contracts@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@chainlink/contracts/-/contracts-0.3.1.tgz#a1a2e1b179a6ce6a9b5b16992f6202918110ef5c"
+  integrity sha512-A8DRvmfNCwLS1iduPPj7wNAZJMe9/ZimMhoHhbbBiq+7Vq/HFjiNcdoQ5NinFdXD5aTsoNUGG5pAYKj7YMpm9A==
+
 "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
