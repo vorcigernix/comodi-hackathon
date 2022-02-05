@@ -34,26 +34,35 @@ export default function Home() {
                 earning potential for your business through decentralized
                 finance (Defi), the use of smart contracts and NFTs. Earn more
                 for your products and gain access to new revenues, lending, and
-                capital resources to grow your business.
+                capital resources to grow your business. In order to use Comodi,
+                you need to install the MetaMask Wallet. Start by clicking the
+                button below.
               </p>
             )}
             <div className="flex justify-center">
               {provider ? (
-                <span className="inline-flex text-sky-500 bg-white-500 border-0 py-2 px-6  text-lg">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                    className="text-sky-500 w-6 h-6 flex-shrink-0 mr-4"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
-                    <path d="M22 4L12 14.01l-3-3"></path>
-                  </svg>
-                  Wallet Installed
-                </span>
+                <>
+                  <span className="inline-flex text-sky-500 bg-white-500 border-0 py-2 px-6  text-lg">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      className="text-sky-500 w-6 h-6 flex-shrink-0 mr-4"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                      <path d="M22 4L12 14.01l-3-3"></path>
+                    </svg>
+                    Wallet Installed
+                  </span>
+                  <Link href="/market" passHref>
+                    <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                      Open Marketplace
+                    </button>
+                  </Link>
+                </>
               ) : (
                 <a
                   href="https://metamask.io/download/"
@@ -64,18 +73,13 @@ export default function Home() {
                   Install Metamask
                 </a>
               )}
-              <Link href="/market" passHref>
-                <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                  Open Marketplace
-                </button>
-              </Link>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
             <img
               className="object-cover object-center rounded"
               alt="hero"
-              src="https://dummyimage.com/720x600"
+              src="https://images.unsplash.com/photo-1494412552100-42e4e7a74ec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
             />
           </div>
         </div>
