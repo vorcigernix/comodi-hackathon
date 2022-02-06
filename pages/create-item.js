@@ -26,6 +26,7 @@ export default function CreateItem() {
     description: "",
     sku: "",
     qty: "",
+    mnemonic: "",
   });
   const [ethPrice, setEthPrice] = useState(0);
   const router = useRouter();
@@ -100,10 +101,9 @@ export default function CreateItem() {
   }
   useEffect(() => {
     async function generateQR() {
-      //console.log(ethers.Wallet.createRandom().mnemonic.phrase);
-      const file = await QRCode.toString(
-        ethers.Wallet.createRandom().mnemonic.phrase
-      );
+      const qrmnemonic = ethers.Wallet.createRandom().mnemonic.phrase;
+      updateFormInput({ ...formInput, mnemonic: qrmnemonic });
+      const file = await QRCode.toString(qrmnemonic);
       try {
         const added = await client.add(file, {
           progress: (prog) => console.log(`received: ${prog}`),
@@ -119,7 +119,7 @@ export default function CreateItem() {
   }, []);
 
   async function createMarket() {
-    const { name, description, price, sku, qty } = formInput;
+    const { name, description, price, sku, qty, mnemonic } = formInput;
     console.log(name, description, price);
     if (!name || !description || !price || !fileUrl) return;
     /* first, upload to IPFS */
@@ -129,6 +129,7 @@ export default function CreateItem() {
       image: fileUrl,
       sku,
       qty,
+      mnemonic,
     });
     try {
       const added = await client.add(data);
