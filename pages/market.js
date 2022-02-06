@@ -79,8 +79,7 @@ export default function Marketplace() {
           <img
             className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
             alt="hero"
-            src="https://images.unsplash.com/photo-1575529673278-45f8a3907e99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTJ8fGVtcHR5JTIwdHJvbGxleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-          />
+            src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"     />
           <div className="text-center lg:w-2/3 w-full">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               No items found
@@ -114,7 +113,7 @@ export default function Marketplace() {
                   />
                 </a>
                 <div className="mt-4">
-                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                  <h3 className="text-gray-500 text-s tracking-widest title-font mb-1 h-20">
                     {nft.description}
                   </h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">
