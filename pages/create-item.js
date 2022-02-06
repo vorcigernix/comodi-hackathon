@@ -24,7 +24,7 @@ export default function CreateItem() {
     price: "",
     name: "",
     description: "",
-    sku: "",
+    sku: "L Bags",
     qty: "",
     mnemonic: "",
   });

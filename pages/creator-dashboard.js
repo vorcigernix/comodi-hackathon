@@ -126,7 +126,7 @@ export default function CreatorDashboard() {
           <div className="container px-5 py-24 mx-auto">
             <h1 className=" font-title text-lg pb-4">Orders Sold</h1>
             <div className="flex flex-wrap -m-4">
-              {nfts.map((nft, i) => (
+              {sold.map((nft, i) => (
                 <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-sky-50 rounded m-4">
                   <a className="block relative h-48 rounded overflow-hidden">
                     <img
