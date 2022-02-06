@@ -35,6 +35,7 @@ export default function Marketplace() {
         const tokenUri = await tokenContract.tokenURI(i.tokenId);
         const meta = await axios.get(tokenUri);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
+        //console.log(meta.data);
         let item = {
           price,
           itemId: i.itemId.toNumber(),
@@ -43,6 +44,8 @@ export default function Marketplace() {
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.description,
+          sku: meta.data.sku,
+          qty: meta.data.qty,
         };
         return item;
       })
@@ -71,38 +74,40 @@ export default function Marketplace() {
   if (loadingState === "loaded" && !nfts.length)
     return <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>;
   return (
-    <div className="flex justify-center">
-      <div className="px-4" style={{ maxWidth: "1600px" }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-          {nfts.map((nft, i) => (
-            <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} alt="NFT Image" />
-              <div className="p-4">
-                <p
-                  style={{ height: "64px" }}
-                  className="text-2xl font-semibold"
-                >
-                  {nft.name}
-                </p>
-                <div style={{ height: "70px", overflow: "hidden" }}>
-                  <p className="text-gray-400">{nft.description}</p>
+    <>
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap -m-4">
+            {nfts.map((nft, i) => (
+              <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a className="block relative h-48 rounded overflow-hidden">
+                  <img
+                    alt="ecommerce"
+                    className="object-cover object-center w-full h-full block"
+                    src="https://source.unsplash.com/random/420x260/?coffee"
+                  />
+                </a>
+                <div className="mt-4">
+                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                    {nft.description}
+                  </h3>
+                  <h2 className="text-gray-900 title-font text-lg font-medium">
+                    {nft.name}, {nft.qty} of {nft.sku}
+                  </h2>
+                  <div className="flex">
+                    <span className="title-font font-medium text-2xl text-gray-900">
+                    {nft.price}&nbsp;Ξ
+                    </span>
+                    <button onClick={() => buyNft(nft)} className="flex ml-auto text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded">
+                      Buy
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="p-4 bg-black">
-                <p className="text-2xl mb-4 font-bold text-white">
-                  {nft.price} ETH
-                </p>
-                <button
-                  className="w-full bg-sky-500 text-white font-bold py-2 px-12 rounded"
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
