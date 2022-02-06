@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import addPolygonNetwork from "/components/polygon";
 
 export default function Home() {
   const [provider, setProvider] = useState(null);
@@ -57,11 +58,12 @@ export default function Home() {
                     </svg>
                     Wallet Installed
                   </span>
-                  <Link href="/market" passHref>
-                    <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                      Open Marketplace
-                    </button>
-                  </Link>
+                  <button
+                    onClick={addPolygonNetwork}
+                    className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+                  >
+                    Configure Wallet
+                  </button>
                 </>
               ) : (
                 <a
