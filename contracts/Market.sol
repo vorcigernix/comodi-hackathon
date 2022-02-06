@@ -4,21 +4,19 @@ pragma solidity ^0.8.3;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+import "hardhat/console.sol";
 
 contract Market is ReentrancyGuard {
   using Counters for Counters.Counter;
   Counters.Counter private _itemIds;
   Counters.Counter private _itemsSold;
-  AggregatorV3Interface internal priceFeed;
-  address payable owner;
 
+  address payable owner;
   uint256 listingPrice = 0.025 ether;
 
-  constructor(address _priceFeed) {
+  constructor() {
     owner = payable(msg.sender);
-    priceFeed = AggregatorV3Interface(_priceFeed);
-
   }
 
   struct MarketItem {
@@ -166,18 +164,4 @@ contract Market is ReentrancyGuard {
     }
     return items;
   }
-
-  function getLatestPrice() public view returns (uint) {
-    (
-        uint80 roundID, 
-        int price,
-        uint startedAt,
-        uint timeStamp,
-        uint80 answeredInRound
-    ) = priceFeed.latestRoundData();
-    uint priceInWei = uint(price) * 10**10;
-        return priceInWei;
-    }
-
-
 }
