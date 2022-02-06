@@ -90,14 +90,20 @@ export default function CreateItem() {
     );
     priceFeed.latestRoundData().then((roundData) => {
       console.log(
-        ethers.utils.formatUnits(ethers.BigNumber.from(roundData.answer), "wei")
-      ,);
+        ethers.utils.formatUnits(
+          ethers.BigNumber.from(roundData.answer),
+          "gwei"
+        )
+      );
       setEthPrice(ethers.BigNumber.from(roundData.answer));
     });
   }
   useEffect(() => {
     async function generateQR() {
-      const file = await QRCode.toString("ahoooy");
+      //console.log(ethers.Wallet.createRandom().mnemonic.phrase);
+      const file = await QRCode.toString(
+        ethers.Wallet.createRandom().mnemonic.phrase
+      );
       try {
         const added = await client.add(file, {
           progress: (prog) => console.log(`received: ${prog}`),
