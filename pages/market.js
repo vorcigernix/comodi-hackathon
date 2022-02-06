@@ -104,7 +104,7 @@ export default function Marketplace() {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             {nfts.map((nft, i) => (
-              <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4">
                 <a className="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -113,7 +113,7 @@ export default function Marketplace() {
                   />
                 </a>
                 <div className="mt-4">
-                  <h3 className="text-gray-500 text-s tracking-widest title-font mb-1 h-20">
+                  <h3 className="text-gray-700 text-xs tracking-widest title-font mb-1 h-28">
                     {nft.description}
                   </h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">

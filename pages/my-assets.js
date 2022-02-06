@@ -43,6 +43,10 @@ export default function MyAssets() {
           seller: i.seller,
           owner: i.owner,
           image: meta.data.image,
+          sku: meta.data.sku,
+          qty: meta.data.qty,
+          name: meta.data.name,
+          description: meta.data.description,
         };
         return item;
       })
@@ -78,21 +82,38 @@ export default function MyAssets() {
       </section>
     );
   return (
-    <div className="flex justify-center">
-      <div className="p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="flex flex-wrap -m-4">
           {nfts.map((nft, i) => (
-            <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <img src={nft.image} className="rounded" alt="NFT Image" />
-              <div className="p-4 bg-black">
-                <p className="text-2xl font-bold text-white">
-                  Price - {nft.price} Eth
-                </p>
+            <div
+              key={i}
+              className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4"
+            >
+              <a className="block relative h-48 rounded overflow-hidden">
+                <img
+                  alt="ecommerce"
+                  className="object-cover object-center w-full h-full block"
+                  src="https://source.unsplash.com/random/420x260/?coffee"
+                />
+              </a>
+              <div className="mt-4">
+                <h3 className="text-gray-700 text-xs tracking-widest title-font mb-1 h-28">
+                  {nft.description}
+                </h3>
+                <h2 className="text-gray-900 title-font text-lg font-medium">
+                  {nft.name}, {nft.qty} of {nft.sku}
+                </h2>
+                <div className="flex">
+                  <span className="title-font font-medium text-2xl text-gray-900">
+                    {nft.price}&nbsp;Ξ
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

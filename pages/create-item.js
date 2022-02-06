@@ -166,7 +166,7 @@ export default function CreateItem() {
       value: listingPrice,
     });
     await transaction.wait();
-    router.push("/");
+    router.push("/market");
   }
 
   return (
@@ -258,10 +258,10 @@ export default function CreateItem() {
                 </div>
               </div>
               <div className="items-center">
-                <span className="mr-3">Price</span>
+                <span className="mr-3">Price in Ethereum</span>
                 <div className="relative">
                   <input
-                    placeholder="$60"
+                    placeholder="0.1"
                     className="border text-gray-900 text-2xl title-font font-medium w-full rounded py-2 pl-3 "
                     onChange={(e) =>
                       updateFormInput({ ...formInput, price: e.target.value })
