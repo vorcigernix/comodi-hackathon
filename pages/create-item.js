@@ -30,7 +30,9 @@ export default function CreateItem() {
   const [ethPrice, setEthPrice] = useState(0);
   const router = useRouter();
   function getEthPrice() {
-    const priceProvider = new ethers.providers.JsonRpcProvider(rpcEndpoint);
+    const priceProvider = new ethers.providers.JsonRpcProvider(
+      "https://kovan.infura.io/v3/f0671e059fde4ab1a541db0a8ea9aa1d"
+    );
     const aggregatorV3InterfaceABI = [
       {
         inputs: [],
@@ -80,15 +82,17 @@ export default function CreateItem() {
         type: "function",
       },
     ];
-    const addr = "0xF9680D99D6C9589e2a93a78A04A279e509205945";
+    const addr = "0x9326BFA02ADD2366b30bacB125260Af641031331";
     const priceFeed = new ethers.Contract(
       addr,
       aggregatorV3InterfaceABI,
       priceProvider
     );
     priceFeed.latestRoundData().then((roundData) => {
-      console.log(roundData);
-      setEthPrice(roundData);
+      console.log(
+        ethers.utils.formatUnits(ethers.BigNumber.from(roundData.answer), "wei")
+      ,);
+      setEthPrice(ethers.BigNumber.from(roundData.answer));
     });
   }
   useEffect(() => {
@@ -105,7 +109,7 @@ export default function CreateItem() {
       }
     }
     generateQR();
-    //getEthPrice();
+    getEthPrice();
   }, []);
 
   async function createMarket() {
