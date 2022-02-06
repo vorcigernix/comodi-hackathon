@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3Modal from "web3modal";
+import Link from "next/link";
 
 import { nftaddress, nftmarketaddress } from "../config";
 
@@ -72,7 +73,32 @@ export default function Marketplace() {
     loadNFTs();
   }
   if (loadingState === "loaded" && !nfts.length)
-    return <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>;
+    return (
+      <section className="text-gray-600 body-font">
+        <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+          <img
+            className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
+            alt="hero"
+            src="https://images.unsplash.com/photo-1575529673278-45f8a3907e99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTJ8fGVtcHR5JTIwdHJvbGxleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          />
+          <div className="text-center lg:w-2/3 w-full">
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+              No items found
+            </h1>
+            <p className="mb-8 leading-relaxed">
+              There are not items on the market yet. Want to be first?
+            </p>
+            <div className="flex justify-center">
+              <Link href="/create-item" passHref>
+                <button className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg">
+                  Create Order
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   return (
     <>
       <section className="text-gray-600 body-font">
@@ -96,9 +122,12 @@ export default function Marketplace() {
                   </h2>
                   <div className="flex">
                     <span className="title-font font-medium text-2xl text-gray-900">
-                    {nft.price}&nbsp;Ξ
+                      {nft.price}&nbsp;Ξ
                     </span>
-                    <button onClick={() => buyNft(nft)} className="flex ml-auto text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded">
+                    <button
+                      onClick={() => buyNft(nft)}
+                      className="flex ml-auto text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded"
+                    >
                       Buy
                     </button>
                   </div>
