@@ -11,6 +11,7 @@ import { nftaddress, nftmarketaddress } from "../config";
 
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
 import Market from "../artifacts/contracts/Market.sol/Market.json";
+import { formatUnits } from "ethers/lib/utils";
 
 let rpcEndpoint = null;
 
@@ -90,13 +91,10 @@ export default function CreateItem() {
       priceProvider
     );
     priceFeed.latestRoundData().then((roundData) => {
-      console.log(
-        ethers.utils.formatUnits(
-          ethers.BigNumber.from(roundData.answer),
-          "gwei"
-        )
-      );
-      setEthPrice(ethers.BigNumber.from(roundData.answer));
+      let price = formatUnits(ethers.BigNumber.from(roundData.answer), 0) / 1e8;
+
+      //console.log(price);
+      setEthPrice(price);
     });
   }
   useEffect(() => {
@@ -268,6 +266,11 @@ export default function CreateItem() {
                     }
                   />
                 </div>
+                {formInput.price && (
+                  <span className="text-gray-700">
+                    Equals ${Math.floor(ethPrice * formInput.price)}
+                  </span>
+                )}
               </div>
             </div>
           </div>
