@@ -21,11 +21,12 @@ if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
+  const [imageFileUrl, setImageFileUrl] = useState(null);
   const [formInput, updateFormInput] = useState({
     price: "",
     name: "",
     description: "",
-    sku: "L Bags",
+    sku: "Not Defined",
     qty: "",
     mnemonic: "",
   });
@@ -116,6 +117,18 @@ export default function CreateItem() {
     getEthPrice();
   }, []);
 
+  async function onPictureUpload(e) {
+    const file = e.target.files[0];
+    try {
+      const added = await client.add(file, {
+        progress: (prog) => console.log(`received: ${prog}`),
+      });
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      setImageFileUrl(url);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  }
   async function createMarket() {
     const { name, description, price, sku, qty, mnemonic } = formInput;
     console.log(name, description, price);
@@ -125,6 +138,7 @@ export default function CreateItem() {
       name,
       description,
       image: fileUrl,
+      skuimage: imageFileUrl,
       sku,
       qty,
       mnemonic,
@@ -172,47 +186,89 @@ export default function CreateItem() {
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
-            {fileUrl ? (
+            {imageFileUrl ? (
               <img
-                className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                src={fileUrl}
-                alt="QR Code"
+                className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded print:hidden"
+                src={imageFileUrl}
+                alt="image of goods"
               />
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <>
+                <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center py-6 mt-6 print:hidden">
+                  <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+                    Create &nbsp;
+                    <br className="hidden lg:inline-block" />
+                    Market Order
+                  </h1>
+                  <p className="mb-8 leading-relaxed">
+                    On this page you can create a market item for the goods you
+                    are selling. You can define the price, the quantity, the
+                    description and the image of the goods.
+                  </p>
+                  <div className="flex justify-center">
+                    <label className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                      <span className="pl-2">
+                        Select image
+                      </span>
+                      <input
+                        type="file"
+                        onChange={onPictureUpload}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </>
             )}
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                CREATE ORDER
-              </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-5">
-                {" "}
                 <input
                   placeholder="Asset Name"
-                  className="mt-8 border rounded p-4"
+                  className="mt-8 border rounded p-4 w-full"
                   onChange={(e) =>
                     updateFormInput({ ...formInput, name: e.target.value })
                   }
                 />
               </h1>
-              <textarea
-                placeholder="Asset Description"
-                className="mt-2 border rounded p-4 leading-relaxed w-full"
-                onChange={(e) =>
-                  updateFormInput({ ...formInput, description: e.target.value })
-                }
-              />
+              <div className="flex print:flex-col items-center">
+                {fileUrl && (
+                  <img
+                    className="w-20 h-20 object-cover object-center print:w-full print:h-full"
+                    src={fileUrl}
+                    alt="QR code"
+                  />
+                )}
+                <textarea
+                  placeholder="Asset Description"
+                  className="mt-2 border rounded p-4 leading-relaxed w-full h-20"
+                  onChange={(e) =>
+                    updateFormInput({
+                      ...formInput,
+                      description: e.target.value,
+                    })
+                  }
+                />
+              </div>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className=" items-center">
                   <span className="mr-3">Quantity</span>
@@ -235,6 +291,7 @@ export default function CreateItem() {
                         updateFormInput({ ...formInput, sku: e.target.value })
                       }
                     >
+                      <option>Not Defined</option>
                       <option>Barrel</option>
                       <option>XL Bags</option>
                       <option>L Bags</option>
@@ -299,7 +356,7 @@ export default function CreateItem() {
         </button>
         <button
           onClick={createMarket}
-          className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-r text-lg"
+          className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded-r text-lg print:hidden"
         >
           Create Order
         </button>

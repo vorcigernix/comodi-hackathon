@@ -43,6 +43,7 @@ export default function MyAssets() {
           seller: i.seller,
           owner: i.owner,
           image: meta.data.image,
+          skuimage: meta.data.skuimage,
           sku: meta.data.sku,
           qty: meta.data.qty,
           name: meta.data.name,
@@ -90,24 +91,43 @@ export default function MyAssets() {
               key={i}
               className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4"
             >
-              <a className="block relative h-48 rounded overflow-hidden">
+              <a className="block relative h-96 rounded overflow-hidden">
                 <img
                   alt="ecommerce"
                   className="object-cover object-center w-full h-full block"
-                  src="https://source.unsplash.com/random/420x260/?coffee"
+                  src={nft.image}
                 />
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-700 text-xs tracking-widest title-font mb-1 h-28">
                   {nft.description}
                 </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  {nft.name}, {nft.qty} of {nft.sku}
-                </h2>
-                <div className="flex">
-                  <span className="title-font font-medium text-2xl text-gray-900">
-                    {nft.price}&nbsp;Ξ
-                  </span>
+                <div className="flex items-center">
+                  <div>
+                    {nft.skuimage ? (
+                      <img
+                        src={nft.skuimage}
+                        alt="SKU Image"
+                        className="w-20 h-20 mr-4 rounded"
+                      />
+                    ) : (
+                      <img
+                        src="https://images.unsplash.com/photo-1549641207-8d4cb87b3204?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=350&q=80"
+                        alt="No Image provided"
+                        className="w-20 h-20 mr-4 rounded"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <h2 className="text-gray-900 title-font text-lg font-medium">
+                      {nft.name}, {nft.qty} of {nft.sku}
+                    </h2>
+                    <div className="flex">
+                      <span className="title-font font-medium text-2xl text-gray-900">
+                        {nft.price}&nbsp;Ξ
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

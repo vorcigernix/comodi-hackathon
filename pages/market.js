@@ -46,6 +46,7 @@ export default function Marketplace() {
           name: meta.data.name,
           description: meta.data.description,
           sku: meta.data.sku,
+          skuimage: meta.data.skuimage,
           qty: meta.data.qty,
         };
         return item;
@@ -79,7 +80,8 @@ export default function Marketplace() {
           <img
             className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
             alt="hero"
-            src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"     />
+            src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+          />
           <div className="text-center lg:w-2/3 w-full">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               No items found
@@ -104,13 +106,24 @@ export default function Marketplace() {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             {nfts.map((nft, i) => (
-              <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4">
+              <div
+                key={i}
+                className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4"
+              >
                 <a className="block relative h-48 rounded overflow-hidden">
-                  <img
-                    alt="ecommerce"
-                    className="object-cover object-center w-full h-full block"
-                    src="https://source.unsplash.com/random/420x260/?coffee"
-                  />
+                  {nft.skuimage ? (
+                    <img
+                      alt="ecommerce"
+                      className="object-cover object-center w-full h-full block"
+                      src={nft.skuimage}
+                    />
+                  ) : (
+                    <img
+                      alt="ecommerce"
+                      className="object-cover object-center w-full h-full block"
+                      src="https://images.unsplash.com/photo-1549641207-8d4cb87b3204?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=350&q=80"
+                    />
+                  )}
                 </a>
                 <div className="mt-4">
                   <h3 className="text-gray-700 text-xs tracking-widest title-font mb-1 h-28">

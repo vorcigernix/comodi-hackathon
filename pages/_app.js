@@ -20,7 +20,7 @@ function Marketplace({ Component, pageProps }) {
           </a>
         </Link>
         {provider && (
-          <div className="flex mt-4">
+          <div className="flex mt-4 print:hidden">
             <Link href="/market">
               <a className="mr-4 text-sky-500">Market</a>
             </Link>

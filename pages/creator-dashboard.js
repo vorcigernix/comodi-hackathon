@@ -46,6 +46,7 @@ export default function CreatorDashboard() {
           owner: i.owner,
           sold: i.sold,
           image: meta.data.image,
+          skuimage: meta.data.skuimage,
           sku: meta.data.sku,
           qty: meta.data.qty,
           name: meta.data.name,
@@ -67,7 +68,6 @@ export default function CreatorDashboard() {
             className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
             alt="hero"
             src="https://images.unsplash.com/photo-1575529673278-45f8a3907e99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTJ8fGVtcHR5JTIwdHJvbGxleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-   
           />
           <div className="text-center lg:w-2/3 w-full">
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
@@ -94,13 +94,24 @@ export default function CreatorDashboard() {
           <h1 className=" font-title text-lg pb-4">Orders Created</h1>
           <div className="flex flex-wrap -m-4">
             {nfts.map((nft, i) => (
-              <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4">
+              <div
+                key={i}
+                className="lg:w-1/4 md:w-1/2 p-4 w-full bg-slate-50 rounded m-4"
+              >
                 <a className="block relative h-48 rounded overflow-hidden">
-                  <img
-                    alt="ecommerce"
-                    className="object-cover object-center w-full h-full block"
-                    src="https://source.unsplash.com/random/420x260/?coffee"
-                  />
+                  {nft.skuimage ? (
+                    <img
+                      alt="ecommerce"
+                      className="object-cover object-center w-full h-full block"
+                      src={nft.skuimage}
+                    />
+                  ) : (
+                    <img
+                      alt="ecommerce"
+                      className="object-cover object-center w-full h-full block"
+                      src="https://images.unsplash.com/photo-1549641207-8d4cb87b3204?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=350&q=80"
+                    />
+                  )}
                 </a>
                 <div className="mt-4">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
@@ -127,13 +138,24 @@ export default function CreatorDashboard() {
             <h1 className=" font-title text-lg pb-4">Orders Sold</h1>
             <div className="flex flex-wrap -m-4">
               {sold.map((nft, i) => (
-                <div key={i} className="lg:w-1/4 md:w-1/2 p-4 w-full bg-sky-50 rounded m-4">
+                <div
+                  key={i}
+                  className="lg:w-1/4 md:w-1/2 p-4 w-full bg-sky-50 rounded m-4"
+                >
                   <a className="block relative h-48 rounded overflow-hidden">
-                    <img
-                      alt="ecommerce"
-                      className="object-cover object-center w-full h-full block"
-                      src="https://source.unsplash.com/random/420x260/?coffee"
-                    />
+                    {nft.skuimage ? (
+                      <img
+                        alt="ecommerce"
+                        className="object-cover object-center w-full h-full block"
+                        src={nft.skuimage}
+                      />
+                    ) : (
+                      <img
+                        alt="ecommerce"
+                        className="object-cover object-center w-full h-full block"
+                        src="https://images.unsplash.com/photo-1549641207-8d4cb87b3204?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=350&q=80"
+                      />
+                    )}
                   </a>
                   <div className="mt-4">
                     <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
